@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /items or /items.json
   def index
@@ -60,10 +59,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def correct_user
-    @item = current_user.items.find_by(id: params[:id])
-    redirect_to items_path, notice: "Not Authorized to edit this Item" if @friend.nil?
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
