@@ -1,0 +1,29 @@
+<h1 class="text-center">Items</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th class="text-center">Item name</th>
+      <th class="text-center">Price</th>
+      <th class="text-center">Category</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+     <%if item.user == current_user %>
+      <tr>
+        <td class="text-center"><%= link_to item.item_name, item %></td>
+        <td class="text-center"><%= item.price %></td>
+        <td class="text-center"><%= item.categoryname %></td>
+        <td class="text-center"><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_item_path, class:"btn btn-secondary" %>
